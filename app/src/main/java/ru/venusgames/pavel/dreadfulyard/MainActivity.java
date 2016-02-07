@@ -26,6 +26,11 @@ public class MainActivity extends AppCompatActivity {
     private DaoSession daoSession;
     private ContactDao contactDao;
 
+    /*
+    Полезная ссылка по GreenDao
+    https://www.youtube.com/watch?v=zDdu1MlXjZw
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
