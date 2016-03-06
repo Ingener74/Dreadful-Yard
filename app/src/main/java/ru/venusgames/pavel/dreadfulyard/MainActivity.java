@@ -1,23 +1,23 @@
 package ru.venusgames.pavel.dreadfulyard;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 
-import ru.venusgames.pavel.dreadfulyard.database.Contact;
 import ru.venusgames.pavel.dreadfulyard.database.ContactDao;
 import ru.venusgames.pavel.dreadfulyard.database.DaoMaster;
 import ru.venusgames.pavel.dreadfulyard.database.DaoSession;
+import ru.venusgames.pavel.dreadfulyard.database.ru.venusgames.pavel.dreadfulyard.database.ListViewActivity;
 
-import static ru.venusgames.pavel.dreadfulyard.database.DaoMaster.*;
+import static ru.venusgames.pavel.dreadfulyard.database.DaoMaster.DevOpenHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,8 +42,13 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Snackbar.make(view, "Start List View Activity", Snackbar.LENGTH_LONG)
+                        .setAction("Action", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startActivity(new Intent(MainActivity.this, ListViewActivity.class));
+                            }
+                        }).show();
             }
         });
 
@@ -54,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         daoSession = daoMaster.newSession();
         contactDao = daoSession.getContactDao();
 
-        contactDao.insert(new Contact(null, "MTA1", "+79090896479", "Shnaider Pavel", 0));
+//        contactDao.insert(new Contact(null, "MTA1", "+79090896479", "Shnaider Pavel", 0));
 
         ListView listView = (ListView) findViewById(R.id.mainListView);
         String[] from = new String[]{ContactDao.Properties.ContactName.columnName, ContactDao.Properties.ContactPhoneNumber.columnName};

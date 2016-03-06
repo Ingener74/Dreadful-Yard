@@ -18,6 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".database.ru.venusgames.pavel.dreadfulyard.database.ListViewActivity"></activity>
     </application>
 
 </manifest>
